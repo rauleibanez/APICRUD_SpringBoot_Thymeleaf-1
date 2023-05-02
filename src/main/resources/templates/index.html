@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width>, initial-scale=1.0">
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <title>Document</title>
+</head>
+<body>
+    <div class="container mt-4">
+        <a th:href="@{/new}" class="btn btn-primary">Nuevo</a>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>TITULO</th>
+                <th>ID EDITORIAL</th>
+                <th>AÑO</th>
+                <th>TEMA</th>
+                <th>IDIOMA</th>
+                <th>ACCIONES</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="libro:${libros}">
+                <td th:text="${libro.idlib}"></td>
+                <td th:text="${libro.titlib}"></td>
+                <td th:text="${libro.idedi}"></td>
+                <td th:text="${libro.aniopub}"></td>
+                <td th:text="${libro.temlib}"></td>
+                <td th:text="${libro.idiolib}"></td>
+                <td>
+                    <a th:href="@{/editar/}+${libro.idlib}" class="btn btn-warning">Editar</a>
+                    <!--a th:href="@{/eliminar/}+${libro.idlib}" class="btn btn-danger" id="BtnEli">Borrar</!--a-->
+                    <a th:onclick="eliminar([[${libro.idlib} ]])" class="btn btn-danger" id="BtnEli">Borrar<a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.6.4.js" integrity="sha256-a9jBBRygX1Bh5lt8GZjXDzyOB+bWve9EiO7tROUtj/E=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="funciones.js"></script>
+</body>
+</html>
